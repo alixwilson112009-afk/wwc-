@@ -5,16 +5,19 @@ CSS — no build step, no dependencies, no framework. Open `index.html` in a
 browser and it works.
 
 ```
-index.html          the whole page
+index.html          the main page
+terms.html          Terms of Service, incl. SMS terms for A2P 10DLC
+privacy.html        Privacy Policy, incl. the mobile-data clause carriers look for
 assets/styles.css   all the styling (brand colours at the top)
-assets/             the hero photo and logo go here (see below)
+assets/logo.webp    the full logo lockup
+assets/logo-mark.png  just the squeegee, cropped from the lockup for the header
 ```
 
 ## Still to do
 
-Two things before this goes live.
+One thing before this goes live.
 
-### 1. Add the hero photo
+### Add the hero photo
 
 One photo is used on the page — the one in the hero, beside the headline. Save
 it into `assets/` with this exact name:
@@ -29,21 +32,13 @@ bigger makes the page slow on a phone, which is where most people will see it.
 It's cropped to 4:5 and anchored on the center, so keep the subject away from
 the very top and bottom edges.
 
-### 2. Add the logo
-
-The header mark and the favicon are currently inline SVG recreations of the
-Wilson squeegee logo — close, but not your actual artwork. To use the real
-file, save it as `assets/logo.png` and replace the `<svg class="brand-mark">`
-block in the header with:
-
-```html
-<img class="brand-mark" src="assets/logo.png" alt="">
-```
-
 ## What's already filled in
 
 - Booking link on all three "Book online" buttons
-- Phone `(509) 774-7789`, email `alexwilson112009@gmail.com`
+- Logo: `assets/logo-mark.png` in the header and as the favicon, full lockup as
+  the social share image. Brand blue `#005aab` and cream `#fdfbf7` are sampled
+  straight out of the logo file.
+- Phone `(833) 696-4541` (Lead Connector), email `alexwilson112009@gmail.com`
 - Hood River / White Salmon / Gorge service area
 - Two years in business, 100+ customers
 - Four real Nextdoor recommendations, shown with initials the way Nextdoor
@@ -58,6 +53,50 @@ Same goes for the trust bar figures: "2 years" and "100+ customers" should stay
 true as time passes. There are deliberately **no licensing, bonding or
 insurance claims anywhere on the site** — don't add any unless they're accurate
 and you can back them up.
+
+## A2P 10DLC registration
+
+`terms.html` and `privacy.html` exist so the messaging campaign can be
+registered and verified. When the registration form asks for URLs, give it:
+
+| Field | URL |
+| --- | --- |
+| Privacy policy | `https://wilsonwindowcleaning.us/privacy.html` |
+| Terms & conditions | `https://wilsonwindowcleaning.us/terms.html` |
+
+Both are linked in the footer of every page, which is where reviewers look
+first.
+
+What's covered, because carriers check for each of these specifically:
+
+- Program description — the exact message types that get sent
+- How consent is collected, and that numbers are never bought or rented
+- "Message frequency varies"
+- "Message and data rates may apply"
+- STOP to opt out, START to opt back in, HELP for help
+- Customer care phone and email
+- Carriers are not liable for delayed or undelivered messages
+- Consent is **not** a condition of purchase
+- The mobile-information clause in the privacy policy stating opt-in data is
+  never shared with third parties or affiliates for marketing
+
+**These are templates, not legal advice.** Read both pages and make sure every
+statement is actually true of how you operate before submitting them — the
+3-day satisfaction window, the message types, and the payment terms are the
+ones most likely to need adjusting.
+
+**The consent checkbox has to live on the booking form itself.** These pages
+describe consent; they cannot collect it. In Lead Connector, add an unchecked
+opt-in checkbox to the booking form with wording along these lines:
+
+> I agree to receive text messages from Wilson Window Cleaning Services about
+> my quote and appointments. Message frequency varies. Message and data rates
+> may apply. Reply STOP to opt out or HELP for help. See our
+> [Privacy Policy](https://wilsonwindowcleaning.us/privacy.html) and
+> [Terms](https://wilsonwindowcleaning.us/terms.html).
+
+It must default to unchecked and must not be required to submit the form.
+Registration usually asks for a screenshot of it.
 
 ## Change the colours
 

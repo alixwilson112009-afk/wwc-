@@ -5,17 +5,17 @@
    ============================================================ */
 
 :root {
-  /* Blue and cream are taken from the Wilson logo. */
-  --brand: #1560bd;
-  --brand-dark: #114e99;
-  --brand-tint: #e9f1fa;
-  --cream: #faf7f0;
+  /* Sampled directly from assets/logo.webp. */
+  --brand: #005aab;
+  --brand-dark: #004484;
+  --brand-tint: #e6eff7;
+  --cream: #fdfbf7;
 
   --ink: #14212e;
   --ink-soft: #5a6b7b;
 
   --surface: #ffffff;
-  --surface-alt: #f8f5ee;
+  --surface-alt: #f6f2ea;
   --line: #dde5ec;
 
   --radius: 14px;
@@ -124,7 +124,13 @@ a { color: var(--brand); }
   text-decoration: none;
   font-weight: 700;
 }
-.brand-mark { width: 32px; height: 32px; flex: none; border-radius: 8px; }
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 8px;
+  background: var(--cream);
+}
 .brand-name { color: var(--ink); font-size: 1.05rem; letter-spacing: -.01em; }
 
 .site-nav { display: flex; gap: 26px; margin-left: auto; }
@@ -370,6 +376,58 @@ a { color: var(--brand); }
 }
 .contact-list a { word-break: break-word; }
 
+/* ------------------------------- legal ------------------------------- */
+
+.legal { padding: 56px 0 80px; }
+.legal-inner { max-width: 74ch; }  /* left-aligned inside .container */
+
+.legal h1 {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin-bottom: 10px;
+}
+.legal .updated {
+  color: var(--ink-soft);
+  font-size: .92rem;
+  margin-bottom: 12px;
+}
+.legal .back {
+  display: inline-block;
+  font-size: .92rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 34px;
+}
+.legal .back:hover { text-decoration: underline; }
+
+.legal h2 {
+  font-size: 1.24rem;
+  letter-spacing: -.01em;
+  margin: 38px 0 10px;
+  scroll-margin-top: 90px;
+}
+.legal h3 { font-size: 1.04rem; margin: 24px 0 8px; }
+
+.legal p, .legal li { color: var(--ink-soft); }
+.legal p { margin-bottom: 14px; }
+.legal ul, .legal ol { margin: 0 0 16px 22px; display: grid; gap: 8px; }
+.legal strong { color: var(--ink); }
+.legal a { overflow-wrap: anywhere; }
+
+.legal .callout {
+  background: var(--brand-tint);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin: 20px 0 24px;
+}
+.legal .callout p:last-child { margin-bottom: 0; }
+
+.legal dl { display: grid; gap: 14px; margin-bottom: 16px; }
+.legal dt { font-weight: 700; color: var(--ink); }
+.legal dd { margin-left: 0; color: var(--ink-soft); }
+
 /* ------------------------------- footer ------------------------------ */
 
 .site-footer {
@@ -394,6 +452,8 @@ a { color: var(--brand); }
   padding-top: 18px;
   font-size: .85rem;
 }
+.footer-legal a { color: #8ec5f5; text-decoration: none; }
+.footer-legal a:hover { text-decoration: underline; }
 
 /* ----------------------------- responsive ---------------------------- */
 
