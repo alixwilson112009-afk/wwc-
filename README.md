@@ -7,39 +7,29 @@ browser and it works.
 ```
 index.html          the whole page
 assets/styles.css   all the styling (brand colours at the top)
-assets/             photos go here (see below)
+assets/             the hero photo and logo go here (see below)
 ```
 
 ## Still to do
 
-Three things before this goes live.
+Two things before this goes live.
 
-### 1. Add the booking link
+### 1. Add the hero photo
 
-`BOOKING_LINK` appears three times in `index.html` — the header button, the
-hero button, and the "Book a clean" button. Replace all three with the real
-URL:
-
-```bash
-sed -i 's|BOOKING_LINK|https://your-booking-url|g' index.html
-```
-
-(On macOS use `sed -i ''` instead of `sed -i`.)
-
-### 2. Add the photos
-
-Save these three files into `assets/`. The names have to match exactly:
+One photo is used on the page — the one in the hero, beside the headline. Save
+it into `assets/` with this exact name:
 
 | File | Which photo |
 | --- | --- |
 | `assets/photo-hero.jpg` | You cleaning the kitchen window from the garden bed |
-| `assets/photo-roof.jpg` | The pole on the metal roof, hillside house |
-| `assets/photo-sunset.jpg` | The two-story house at sunset with the tank on the lawn |
 
-Resize each to roughly 1600px on the long edge and under ~400 KB. Anything much
+Resize it to roughly 1600px on the long edge and under ~400 KB. Anything much
 bigger makes the page slow on a phone, which is where most people will see it.
 
-### 3. Add the logo
+It's cropped to 4:5 and anchored on the center, so keep the subject away from
+the very top and bottom edges.
+
+### 2. Add the logo
 
 The header mark and the favicon are currently inline SVG recreations of the
 Wilson squeegee logo — close, but not your actual artwork. To use the real
@@ -52,6 +42,7 @@ block in the header with:
 
 ## What's already filled in
 
+- Booking link on all three "Book online" buttons
 - Phone `(509) 774-7789`, email `alexwilson112009@gmail.com`
 - Hood River / White Salmon / Gorge service area
 - Two years in business, 100+ customers
@@ -118,6 +109,5 @@ python3 -m http.server 8000
 Then visit http://localhost:8000. Before going live, check nothing was missed:
 
 ```bash
-grep -n 'BOOKING_LINK' index.html   # should print nothing
-ls assets/photo-*.jpg               # should list all three photos
+ls assets/photo-hero.jpg   # the hero photo must exist
 ```

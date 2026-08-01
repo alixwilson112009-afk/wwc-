@@ -282,27 +282,6 @@ a { color: var(--brand); }
 }
 .reason p { color: var(--ink-soft); padding-left: 19px; }
 
-/* ------------------------------ gallery ------------------------------ */
-
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-.gallery figure {
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: var(--surface-alt);
-  box-shadow: var(--shadow);
-}
-/* Source photos are portrait (3:4). A 4:5 crop keeps them clearly portrait
-   without each one eating a whole screen height at two columns. */
-.gallery img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-}
-
 /* ------------------------------ reviews ------------------------------ */
 
 .quotes {
@@ -430,7 +409,6 @@ a { color: var(--brand); }
   .site-nav { display: none; }
   .trust-inner { grid-template-columns: repeat(2, 1fr); }
   .split { grid-template-columns: 1fr; gap: 26px; }
-  .gallery { grid-template-columns: repeat(2, 1fr); }
   .book-inner { grid-template-columns: 1fr; gap: 32px; }
 }
 
@@ -439,7 +417,6 @@ a { color: var(--brand); }
   .header-cta { display: none; }
   .cards,
   .quotes,
-  .gallery,
   .area-list,
   .trust-inner { grid-template-columns: 1fr; }
   .footer-inner { grid-template-columns: 1fr; }
