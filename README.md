@@ -11,29 +11,24 @@ privacy.html        Privacy Policy, incl. the mobile-data clause carriers look f
 assets/styles.css   all the styling (brand colours at the top)
 assets/logo.webp    the full logo lockup
 assets/logo-mark.png  just the squeegee, cropped from the lockup for the header
+assets/photo-hero.jpg the hero image
 ```
 
-## Still to do
+## Replacing the hero photo
 
-One thing before this goes live.
+Drop a new file in at `assets/photo-hero.jpg` and update the `width` and
+`height` attributes on the `<img>` in `index.html` to match — they prevent the
+page jumping around while the image loads.
 
-### Add the hero photo
-
-One photo is used on the page — the one in the hero, beside the headline. Save
-it into `assets/` with this exact name:
-
-| File | Which photo |
-| --- | --- |
-| `assets/photo-hero.jpg` | You cleaning the kitchen window from the garden bed |
-
-Resize it to roughly 1600px on the long edge and under ~400 KB. Anything much
-bigger makes the page slow on a phone, which is where most people will see it.
-
-It's cropped to 4:5 and anchored on the center, so keep the subject away from
-the very top and bottom edges.
+It's displayed as a 4:5 crop anchored on the centre, so a tall portrait photo
+will lose roughly equal amounts off the top and bottom. Keep the subject away
+from both edges. Save it at about 1200px wide and under ~300 KB.
 
 ## What's already filled in
 
+Everything is in place — the site is ready to publish.
+
+- Hero photo `assets/photo-hero.jpg`, cropped 4:5 and centre-anchored
 - Booking link on all three "Book online" buttons
 - Logo: `assets/logo-mark.png` in the header and as the favicon, full lockup as
   the social share image. Brand blue `#005aab` and cream `#fdfbf7` are sampled
