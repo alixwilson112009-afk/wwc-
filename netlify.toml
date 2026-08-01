@@ -1,0 +1,16 @@
+# Netlify configuration.
+#
+# This site is plain HTML and CSS with no build step, so there is no build
+# command — Netlify publishes the repository root exactly as it is. Keeping
+# this file in the repo means the settings survive if the site is ever
+# reconnected or rebuilt from scratch.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"

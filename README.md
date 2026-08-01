@@ -5,6 +5,7 @@ CSS — no build step, no dependencies, no framework. Open `index.html` in a
 browser and it works.
 
 ```
+netlify.toml        Netlify build settings (no build step, publish root)
 index.html          the main page
 terms.html          Terms of Service, incl. SMS terms for A2P 10DLC
 privacy.html        Privacy Policy, incl. the mobile-data clause carriers look for
@@ -109,28 +110,78 @@ Everything visual comes from a handful of variables at the top of
 
 Change `--brand` and the whole page follows.
 
-## Publish it
+## Publish it on Netlify
 
-### GitHub Pages
+### 1. Connect the repo
 
-1. Push this repo to GitHub.
-2. **Settings → Pages**.
-3. Under **Source**, choose **Deploy from a branch**, then `main` and `/ (root)`.
-4. Save. It goes live at `https://<username>.github.io/<repo>/` within a minute
-   or two.
+In Netlify: **Add new site → Import an existing project → GitHub**, pick this
+repository, and deploy. Every push to `main` redeploys automatically.
 
-### Your own domain
+Leave the build settings alone. `netlify.toml` in the repo root already sets
+them: no build command, publish directory `.`. This is plain HTML, so there is
+nothing to compile — if Netlify ever prompts for a build command, leave it
+empty.
 
-You already own `wilsonwindowcleaning.us`. To point it here:
+The site goes live immediately at `https://<something>.netlify.app`. Note that
+name down; you need it for the DNS below.
 
-1. **Settings → Pages → Custom domain**, enter `wilsonwindowcleaning.us`, save.
-   That writes a `CNAME` file into the repo.
-2. At your domain registrar, add these DNS records:
-   - Four `A` records for the apex `@`: `185.199.108.153`, `185.199.109.153`,
-     `185.199.110.153`, `185.199.111.153`
-   - One `CNAME` for `www` pointing at `<username>.github.io`
-3. Back on the Pages settings, tick **Enforce HTTPS** once the certificate has
-   been issued (usually well under an hour).
+### 2. Point wilsonwindowcleaning.us at it
+
+In Netlify: **Domain management → Add a domain**, enter
+`wilsonwindowcleaning.us`. Netlify then offers two routes. Pick one — don't do
+both.
+
+#### Option A — let Netlify run the DNS (simpler)
+
+Netlify shows you four nameservers that look like
+`dns1.p01.nsone.net` … `dns4.p01.nsone.net` (the number varies per account, so
+use the exact four it gives you). At your registrar, replace the existing
+nameservers with those.
+
+Netlify then handles the apex, `www`, and the HTTPS certificate itself. This is
+the route Netlify recommends, and it is the one that goes wrong least often.
+
+**Before you switch, check whether anything else uses this domain's DNS** —
+email in particular. Moving nameservers moves *all* records, so any existing
+MX, TXT/SPF or DKIM records have to be recreated in Netlify or mail stops
+arriving. If the domain sends or receives email, use Option B instead.
+
+#### Option B — keep DNS at your registrar
+
+Add these two records where the domain is registered:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| `ALIAS`, `ANAME`, or flattened `CNAME` | `@` (or blank) | `apex-loadbalancer.netlify.com` |
+| `CNAME` | `www` | `<your-site-name>.netlify.app` |
+
+If your registrar doesn't offer ALIAS/ANAME/CNAME-flattening at the apex — many
+don't, because plain CNAME is not valid there — use an `A` record instead:
+
+| Type | Host | Value |
+| --- | --- | --- |
+| `A` | `@` (or blank) | `75.2.60.5` |
+
+Prefer the ALIAS/ANAME form where you can. It follows Netlify if their IP ever
+changes; a hardcoded `A` record does not.
+
+Delete any old `A`, `AAAA` or `CNAME` records for `@` and `www` left over from
+a previous host, or they will conflict.
+
+### 3. Wait for HTTPS
+
+Netlify issues a Let's Encrypt certificate automatically once DNS resolves —
+usually minutes, but allow up to 24 hours for propagation. Then turn on
+**Force HTTPS** in domain settings so visitors can't land on the insecure
+version.
+
+Verify from a machine that has never visited the site:
+
+```bash
+dig +short wilsonwindowcleaning.us
+dig +short www.wilsonwindowcleaning.us
+curl -sI https://wilsonwindowcleaning.us | head -1
+```
 
 ## Checking your work
 
